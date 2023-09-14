@@ -1,11 +1,7 @@
 import type { Metadata } from 'next'
 import '../styles/globals.css'
 import { Navigation } from '../components/Navigation';
-import { Space_Grotesk } from '@next/font/google';
-
-const font = Space_Grotesk({
-  weight: ['400', '700']
-})
+import { font } from './fonts'
 
 export const metadata: Metadata = {
   title: 'Experimental Next',
@@ -20,7 +16,7 @@ export default function RootLayout({ children}: {
         <head>
           <title>ExperiNext con Next.js</title>
         </head>
-        <body className={font.className}>
+        <body className={font.variable}>
           <Navigation />
           {children}
         </body>
