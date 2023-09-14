@@ -1,19 +1,24 @@
+import Image from "next/image";
+
 const fetchComments = async (id: any) =>{
     await new Promise(resolve => setTimeout(resolve, 3000));
     return fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`, { 
             next: {revalidate: 60}
         }
-    ).then(res => res.json())
+    )
+    .then(res => res.json())
 }
 
 export default async function Post ({ params }: any){
     const { id } = params;
     const comments = await fetchComments(id);
+
     return  (
         <ul style={{ background:'#444', fontSize: '10px'}}>
             {comments.map((comment: any) => (
                 <li key={comment.id}>
-                    <h2>{comment.name}</h2>
+                    <Image width={50} height={50} alt={comment.name} src={`https://avatars.dicebear.com/api/pixel-art-neutral/${comment.email}.svg`} />
+                    <h4>{comment.name}</h4>
                     <p>{comment.body}</p>
                 </li>
             ))}
